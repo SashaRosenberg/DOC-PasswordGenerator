@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SashaPassGen", "SashaPassGen\SashaPassGen.csproj", "{936D93EC-8DA4-4F25-96D4-90F3EC97C0B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{936D93EC-8DA4-4F25-96D4-90F3EC97C0B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{936D93EC-8DA4-4F25-96D4-90F3EC97C0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{936D93EC-8DA4-4F25-96D4-90F3EC97C0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{936D93EC-8DA4-4F25-96D4-90F3EC97C0B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {811161F2-FB4B-48A5-9761-44E2CC575A2F}
+	EndGlobalSection
+EndGlobal
