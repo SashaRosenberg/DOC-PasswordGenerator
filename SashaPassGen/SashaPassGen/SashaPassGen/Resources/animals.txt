@@ -23,11 +23,11 @@ magpie
 Bandicoot
 Bat
 Beaver
-Bald Eagle
+BaldEagle
 Eagle
 Bison
 rhinoceros
-spider monkey
+spiderMonkey
 vulture
 jackal
 crane

@@ -28,9 +28,9 @@ namespace SashaPassGen
 
             GenerateStuff GS = new GenerateStuff();
             GS.GeneratePassword();
-            textBox1.Text = GS.FinalOutput;
+            textBox1.Text = GenerateStuff.FinalOutput;
             Phonetics pho = new Phonetics();
-            PhoOutput.Text = pho.PhoneticEnator(textBox1.Text);
+            PhoOutput.Text = pho.PhoneticEnator();
 
 
         }
@@ -51,9 +51,22 @@ namespace SashaPassGen
             {
                 Phonetics pho = new Phonetics();
                 Phonetics.PhoneticEnatorPos++;
-                PhoOutput.Text = pho.PhoneticEnator(textBox1.Text);
+                PhoOutput.Text = pho.PhoneticEnator();
             }
         }
 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == null)
+            {
+
+            }
+            else
+            {
+                Phonetics pho = new Phonetics();
+                Phonetics.PhoneticEnatorPos--;
+                PhoOutput.Text = pho.PhoneticEnator();
+            }
+        }
     }
 }

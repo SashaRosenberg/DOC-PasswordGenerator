@@ -32,22 +32,13 @@ namespace SashaPassGen
             Application.Run(new GUI());
             GenerateStuff GS = new GenerateStuff();
             GS.GeneratePassword();
-            password = GS.FinalOutput;
-            //get list of adjectives
-            Console.WriteLine(password + "!!!");
-
-            // Keep the console window open in debug mode.
-            Console.WriteLine("Press any key to exit.");
-            GS.GeneratePassword();
-            password = GS.FinalOutput;
-            //get list of adjectives
-            Console.WriteLine(password + "!!!");
+            password = GenerateStuff.FinalOutput;
         }
 
     }
     public class GenerateStuff
     {
-        public string FinalOutput;
+        public static string FinalOutput;
         public Random rnd1 = new Random();
         public Random rnd2 = new Random();
         public Random rnd3 = new Random();
@@ -78,10 +69,12 @@ namespace SashaPassGen
         }
         public void GeneratePassword()
         {
+
             checkRandomShit();
             FinalOutput = genAdjectiveList() + genNounList() + GenNumber();
             Phonetics alph = new Phonetics();
-            alph.PhoneticEnator(FinalOutput);
+            alph.PhoneticEnator();
+            Phonetics.PhoneticEnatorPos = 0;
         }
 
         string genAdjectiveList()
@@ -105,9 +98,9 @@ namespace SashaPassGen
         }
 
     }
+
     public class Phonetics
     {
-
         Dictionary<char, string> PhoneticDict = new Dictionary<char, string>()
         {
             { 'a', "Alpha"},
@@ -162,24 +155,47 @@ namespace SashaPassGen
             { 'X', "X-ray"},
             { 'Y', "Yankee"},
             { 'Z', "Zulu"},
+            { '0', "0"},
+            { '1', "1"},
+            { '2', "2"},
+            { '3', "3"},
+            { '4', "4"},
+            { '5', "5"},
+            { '6', "6"},
+            { '7', "7"},
+            { '8', "8"},
+            { '9', "9"},
 
     };
         public static int PhoneticEnatorPos = 0;
+        private void numCheck()
+        {
+            if (PhoneticEnatorPos < 0)
+                PhoneticEnatorPos = 0;
 
-
-        public string PhoneticEnator(string FO)
+            if (PhoneticEnatorPos == GenerateStuff.FinalOutput.Length)
+                PhoneticEnatorPos--;
+        }
+        bool IsLower(char value)
+        {
+            // Consider string to be lowercase if it has no uppercase letters.
+                if (char.IsUpper(value))
+                {
+                    return false;
+                }
+            return true;
+        }
+        public string PhoneticEnator()
         {
 
-            Console.WriteLine(PhoneticDict
-                [
-                FO[PhoneticEnatorPos]
-                ]
-                );
-            return FO[PhoneticEnatorPos].ToString();
+            numCheck();
+            Console.WriteLine(PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]]);
+            if(IsLower(GenerateStuff.FinalOutput[PhoneticEnatorPos]))
+                return "Lowercase " + GenerateStuff.FinalOutput[PhoneticEnatorPos].ToString() + " for " + PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]];
+            else
+                return "Uppercase " + GenerateStuff.FinalOutput[PhoneticEnatorPos].ToString() + " for " + PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]];
+
         }
-
     }
-
-
 }
 
