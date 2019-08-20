@@ -176,25 +176,23 @@ namespace SashaPassGen
             if (PhoneticEnatorPos == GenerateStuff.FinalOutput.Length)
                 PhoneticEnatorPos--;
         }
-        bool IsLower(char value)
-        {
-            // Consider string to be lowercase if it has no uppercase letters.
-                if (char.IsUpper(value))
-                {
-                    return false;
-                }
-            return true;
-        }
+
         public string PhoneticEnator()
         {
-
             numCheck();
             Console.WriteLine(PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]]);
-            if(IsLower(GenerateStuff.FinalOutput[PhoneticEnatorPos]))
+            if (char.IsLower(GenerateStuff.FinalOutput[PhoneticEnatorPos]))
+            {
                 return "Lowercase " + GenerateStuff.FinalOutput[PhoneticEnatorPos].ToString() + " for " + PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]];
-            else
+            }
+            else if (char.IsUpper(GenerateStuff.FinalOutput[PhoneticEnatorPos]))
+            {
                 return "Uppercase " + GenerateStuff.FinalOutput[PhoneticEnatorPos].ToString() + " for " + PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]];
-
+            }
+            else
+            {
+                return "The number " + PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]];
+            }
         }
     }
 }
