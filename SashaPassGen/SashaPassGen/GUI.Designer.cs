@@ -32,6 +32,9 @@
             this.Copy = new System.Windows.Forms.Button();
             this.Generate = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.PhoOutput = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +49,7 @@
             // 
             // Copy
             // 
-            this.Copy.Location = new System.Drawing.Point(191, 100);
+            this.Copy.Location = new System.Drawing.Point(206, 74);
             this.Copy.Name = "Copy";
             this.Copy.Size = new System.Drawing.Size(75, 23);
             this.Copy.TabIndex = 4;
@@ -76,6 +79,35 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(265, 129);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(57, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Next";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // PhoOutput
+            // 
+            this.PhoOutput.Location = new System.Drawing.Point(71, 129);
+            this.PhoOutput.Multiline = true;
+            this.PhoOutput.Name = "PhoOutput";
+            this.PhoOutput.Size = new System.Drawing.Size(188, 23);
+            this.PhoOutput.TabIndex = 9;
+            this.PhoOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(8, 129);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(57, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Previous";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -84,7 +116,10 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(334, 128);
+            this.ClientSize = new System.Drawing.Size(334, 162);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.PhoOutput);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Copy);
@@ -97,7 +132,6 @@
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "DOC Password Generator";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.GUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -111,5 +145,8 @@
         private System.Windows.Forms.Button Copy;
         private System.Windows.Forms.Button Generate;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox PhoOutput;
+        private System.Windows.Forms.Button button2;
     }
 }
