@@ -1,82 +1,121 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 /// <summary>
 /// this code was designed and written by Sasha Rosenberg
 /// feel free to take it, but plz credit <3
 /// also if you're looking at this to hire me, this was done in three hours from concept to delivery inbetween calls
-/// Version 1.0
-/// todo: add crash prevention and text clensing
+/// 
+/// Version 1.5 
+/// - 
+/// fixed #11 and made slight optimizations on when items are being created. comments added
+/// 
+/// todo: waiting on feedback
 /// </summary>
 
 namespace SashaPassGen
 {
-
-
     public class FunkyPassword : Form
     {
         //public List<string> Animals;
         // public List<>
 
-        static string password;
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
-            Application.Run(new GUI());
-            GenerateStuff GS = new GenerateStuff();
-            GS.GeneratePassword();
-            password = GenerateStuff.FinalOutput;
+            Application.Run(new GUI()); // runs interface form
         }
 
     }
-    public class GenerateStuff
+    public class GenerateStuff //class responsable for running password generation
     {
-        public static string FinalOutput;
-        public Random rnd1 = new Random();
-        public Random rnd2 = new Random();
-        public Random rnd3 = new Random();
-        int Adjectives, Noun, Number = 0;
-        int Num_store = 99;
-        public string[] linesAD, linesNoun;
+        public static string FinalOutput; // stores variable for the final password that is generated 
+        public Random RandomNumber = new Random(); // creates the random number generator that will be used
+
+        int Adjectives, Nouns, Numbers, Colors, RNG = 0; //creates variables to decide where in each list the password should be generated from  (numbers)
+        int AdjPrev, NounsPrev, NumbersPrev, ColorsPrev = 0;//creates variable to store previous above variables
+
+        int numLimit = 99;//stores number for the biggest number that can be added to the end of the password
+        int rngRange = 80; //parcentage out of 100 that a color will generate inplace of a adjective
+        public string[] linesAD, linesNoun, linesColor; //creates arrays for the password generator to use for storing words
+        public void GeneratePassword() //first func to be run in this class
+        {
+            checkRandomShit(); //assigns random numbers and ensures they are legal
+
+            if (RNG <= rngRange) //creates the password with adjective (if the random number generator is within the field)
+            {
+                FinalOutput = genAdjectiveList() + genNounList() + GenNumber(); 
+
+            }
+            else if (RNG >= rngRange)//creates the password with color (if the random number generator is within the field)
+            {
+                FinalOutput = genColorList() + genNounList() + GenNumber();
+
+            }
+
+
+            Phonetics alph = new Phonetics(); //creates an instance of the dictionary
+            Phonetics.PhoneticEnatorPos = 0; //resets the current position of the phonetic reader (second text box)
+            alph.PhoneticEnator(); //runs function to convert the password into phonetic alphabet
+        }
 
 
         void checkRandomShit()
         {
-            linesAD = Properties.Resources.adjectives.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            linesNoun = Properties.Resources.animals.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-
-            Adjectives = rnd1.Next(linesAD.Length);
-            Noun = rnd2.Next(linesNoun.Length);
-            while (Noun == Adjectives)
+            if (linesAD == null) //checks to ensure program is not reinstanciating lists every generate, but will run on boot (if arrays are empty)
             {
-                Noun = rnd2.Next(linesNoun.Length);
+                linesAD = Properties.Resources.adjectives.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                linesNoun = Properties.Resources.animals.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                linesColor = Properties.Resources.colors.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
             }
 
-            Number = rnd3.Next(10, Num_store);
-            while (Number == Adjectives || Number == Noun)
+            ////
+            //these loops checks if the new number that was chosen is the same as the last number, if it is, generate a new one.
+            //this ensures that generations are not repeating (as much)
+            ////
+            for (; Adjectives == AdjPrev;) 
             {
-                Number = rnd3.Next(10, Num_store);
+                Adjectives = RandomNumber.Next(linesAD.Length);
             }
-            Console.WriteLine(Adjectives + Noun + Number);
+            for (; Nouns == NounsPrev;)
+            {
+                Nouns = RandomNumber.Next(linesNoun.Length);
+            }
+            for (; Numbers == NumbersPrev;)
+            {
+                Numbers = RandomNumber.Next(10, numLimit);
+            }
+            for (; Colors == ColorsPrev;)
+            {
+                Colors = RandomNumber.Next(linesColor.Length);
+            }
 
+            RNG = RandomNumber.Next(0, 100); //generates the number that will check against rngRange
+
+            ////
+            //these set the previous numbers to be current, so next time it is checked (when generate is ran) we can ensure it wont be repeated
+            ///
+            AdjPrev = Adjectives;
+            NounsPrev = Nouns;
+            NumbersPrev = Numbers;
+            ColorsPrev = Colors;
         }
-        public void GeneratePassword()
+
+        ////
+        ///these strings all do the same thing
+        ////
+        string genColorList()
         {
+            string Result = "Blank"; //sets variable that will hold the output of this string
 
-            checkRandomShit();
-            FinalOutput = genAdjectiveList() + genNounList() + GenNumber();
-            Phonetics alph = new Phonetics();
-            alph.PhoneticEnator();
-            Phonetics.PhoneticEnatorPos = 0;
+            Result = linesColor[Colors]; //chooses what word to use based on checkRandomShit's number that was generated
+            Result = char.ToUpper(Result[0]) + Result.Substring(1).ToLower(); //formats the word to be cap first and the rest lower 
+
+            return Result;
         }
-
         string genAdjectiveList()
         {
             string Result = "Blank";
@@ -86,21 +125,23 @@ namespace SashaPassGen
 
             return Result;
         }
-        string GenNumber()
-        {
-            return Number.ToString();
-        }
         string genNounList()
         {
             string Result = "Blank";
-            Result = linesNoun[Noun];
+            Result = linesNoun[Nouns];
             return char.ToUpper(Result[0]) + Result.Substring(1).ToLower();
         }
-
+        string GenNumber()
+        {
+            return Numbers.ToString();
+        }
     }
 
     public class Phonetics
     {
+        /// <summary>
+        /// this creates the dictionary that this class will use to convert the password into NATO phonetic alphabet
+        /// </summary>
         Dictionary<char, string> PhoneticDict = new Dictionary<char, string>()
         {
             { 'a', "Alpha"},
@@ -167,21 +208,31 @@ namespace SashaPassGen
             { '9', "9"},
 
     };
-        public static int PhoneticEnatorPos = 0;
+        //#13
+        public static short PhoneticEnatorPos = 0; //stores the current position of phonetic letter being shown 
         private void numCheck()
         {
-            if (PhoneticEnatorPos < 0)
+            if (PhoneticEnatorPos < 0) //makes sure this var stays positive
                 PhoneticEnatorPos = 0;
 
-            if (PhoneticEnatorPos == GenerateStuff.FinalOutput.Length)
+            if (PhoneticEnatorPos == GenerateStuff.FinalOutput.Length) //makes sure this var stays below the current size of the password
                 PhoneticEnatorPos--;
+            
         }
 
         public string PhoneticEnator()
         {
-            numCheck();
-            Console.WriteLine(PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]]);
-            if (char.IsLower(GenerateStuff.FinalOutput[PhoneticEnatorPos]))
+            numCheck();//checks that PhoneticEnatorPos is in a legal position
+            
+            
+            ////
+            ///this checks what type of output should be used for the current letter
+            ///and then adds the correct flavor text to it
+            ///
+            ///currently only lowercase, uppercase, number
+            ///to add: special characters, white spacces
+            ////
+            if (char.IsLower(GenerateStuff.FinalOutput[PhoneticEnatorPos])) //checks if the current letter is lowcase or uppercase
             {
                 return "Lowercase " + GenerateStuff.FinalOutput[PhoneticEnatorPos].ToString() + " for " + PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]];
             }

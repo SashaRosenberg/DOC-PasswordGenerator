@@ -1,9 +1,6 @@
-Bitter
-Bland
 Spicy
 Tangy
 Tiny
-Massive
 Huge
 Wide
 Thin
@@ -14,7 +11,6 @@ pretty
 Bald
 Hairy
 Tasty
-Salty
 Sour
 Fruity
 Minty
@@ -28,7 +24,6 @@ Happy
 Elongated
 Cool
 Funny
-bad
 Colourful
 Silly
 Jealous
