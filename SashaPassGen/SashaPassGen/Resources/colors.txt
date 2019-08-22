@@ -5,3 +5,9 @@ green
 blue
 indigo
 violet
+Brown
+Purple
+Cyan
+Pink
+Black
+White

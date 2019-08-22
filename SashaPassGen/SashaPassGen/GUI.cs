@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SashaPassGen
@@ -22,17 +15,15 @@ namespace SashaPassGen
 
         }
 
+        GenerateStuff GS = new GenerateStuff();
 
         private void Generate_Click_1(object sender, EventArgs e)
         {
-
-            GenerateStuff GS = new GenerateStuff();
+            textBox2.Text = GenerateStuff.FinalOutput;
             GS.GeneratePassword();
             textBox1.Text = GenerateStuff.FinalOutput;
             Phonetics pho = new Phonetics();
             PhoOutput.Text = pho.PhoneticEnator();
-
-
         }
 
         private void Copy_Click_1(object sender, EventArgs e)
@@ -67,6 +58,11 @@ namespace SashaPassGen
                 Phonetics.PhoneticEnatorPos--;
                 PhoOutput.Text = pho.PhoneticEnator();
             }
+        }
+
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

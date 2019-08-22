@@ -61,53 +61,40 @@ namespace SashaPassGen.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to abound
-        ///abounds
-        ///abundance
-        ///abundant
-        ///accessable
-        ///accessible
-        ///acclaim
-        ///acclaimed
-        ///acclamation
-        ///accolade
-        ///accolades
-        ///accommodative
-        ///accomodative
-        ///accomplish
-        ///accomplished
-        ///accomplishment
-        ///accomplishments
-        ///accurate
-        ///accurately
-        ///achievable
-        ///achievement
-        ///achievements
-        ///achievible
-        ///acumen
-        ///adaptable
-        ///adaptive
-        ///adequate
-        ///adjustable
-        ///admirable
-        ///admirably
-        ///admiration
-        ///admire
-        ///admirer
-        ///admiring
-        ///admiringly
-        ///adorable
-        ///adore
-        ///adored
-        ///adorer
-        ///adoring
-        ///adoringly
-        ///adroit
-        ///adroitly
-        ///adulate
-        ///adulation
-        ///adulatory
-        ///advanced        /// [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Bitter
+        ///Bland
+        ///Spicy
+        ///Tangy
+        ///Tiny
+        ///Massive
+        ///Huge
+        ///Wide
+        ///Thin
+        ///Thick
+        ///Cute
+        ///Smiley
+        ///pretty
+        ///Bald
+        ///Hairy
+        ///Tasty
+        ///Salty
+        ///Sour
+        ///Fruity
+        ///Minty
+        ///Slimey
+        ///good
+        ///Pointed
+        ///Fresh
+        ///Intelligent
+        ///Handsome
+        ///Happy
+        ///Elongated
+        ///Cool
+        ///Funny
+        ///bad
+        ///Colourful
+        ///Silly
+        ///Jealous.
         /// </summary>
         internal static string adjectives {
             get {
@@ -116,21 +103,72 @@ namespace SashaPassGen.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cat
+        ///   Looks up a localized string similar to frog
+        ///Cat
         ///Dog
         ///Lizard
         ///Bird
         ///Swan
         ///Duck
-        ///human
+        ///Pangolin
         ///Elephant
         ///Gorilla
-        ///axolotl
-        ///.
+        ///Dolphin
+        ///Shark
+        ///Whale
+        ///Aardvark
+        ///Lion
+        ///tiger
+        ///PandaBear
+        ///Dingo
+        ///Ant
+        ///Baboon
+        ///Badger
+        ///magpie
+        ///Bandicoot
+        ///Bat
+        ///Beaver
+        ///BaldEagle
+        ///Eagle
+        ///Bison
+        ///rhino
+        ///spiderMonkey
+        ///vulture
+        ///jackal
+        ///crane
+        ///mallard
+        ///password
+        ///kangaroo
+        ///Ferret
+        ///Wombat
+        ///Koala 
+        ///Catfish
+        ///Peacock
+        ///hyena
+        ///lemur
+        ///ButterFly
+        ///goose
+        ///human.
         /// </summary>
         internal static string animals {
             get {
                 return ResourceManager.GetString("animals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to red
+        ///orange
+        ///yellow
+        ///green
+        ///blue
+        ///indigo
+        ///violet
+        ///.
+        /// </summary>
+        internal static string colors {
+            get {
+                return ResourceManager.GetString("colors", resourceCulture);
             }
         }
         

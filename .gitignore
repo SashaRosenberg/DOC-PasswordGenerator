@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs/slnx.sqlite
+/SashaPassGen/.vs/SashaPassGen/v16/Server/sqlite3/storage.ide-wal
+/SashaPassGen/.vs/SashaPassGen/v16/Server/sqlite3/storage.ide-shm
+/SashaPassGen/.vs/SashaPassGen/v16/Server/sqlite3/storage.ide
+/SashaPassGen/.vs/SashaPassGen/v16/Server/sqlite3/db.lock
