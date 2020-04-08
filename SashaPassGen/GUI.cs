@@ -13,22 +13,20 @@ namespace SashaPassGen
         private void Generate_Click_1(object sender, EventArgs e)
         {
             GenerateStuff GS = new GenerateStuff();
-            Phonetics pho = new Phonetics();
-
             if (checkBox1.Checked) //do you want to use special characters
             {
                 GS.GeneratePassword();
-                GenerateStuff.FinalOutput = GS.SpecialChar(GenerateStuff.FinalOutput);
+                GenerateStuff.FinalOutput = Phonetics.generateSpecialChar(GenerateStuff.FinalOutput);
                 textBox1.Text = GenerateStuff.FinalOutput;
 
-                PhoOutput.Text = pho.PhoneticEnator();
+                PhoOutput.Text = Phonetics.PhoneticEnator();
             }
             else
             {
 
                 GS.GeneratePassword();
                 textBox1.Text = GenerateStuff.FinalOutput;
-                PhoOutput.Text = pho.PhoneticEnator();
+                PhoOutput.Text = Phonetics.PhoneticEnator();
 
             }
         }
@@ -47,9 +45,8 @@ namespace SashaPassGen
             }
             else
             {
-                Phonetics pho = new Phonetics();
                 Phonetics.PhoneticEnatorPos++;
-                PhoOutput.Text = pho.PhoneticEnator();
+                PhoOutput.Text = Phonetics.PhoneticEnator();
             }
         }
 
@@ -61,9 +58,8 @@ namespace SashaPassGen
             }
             else
             {
-                Phonetics pho = new Phonetics();
                 Phonetics.PhoneticEnatorPos--;
-                PhoOutput.Text = pho.PhoneticEnator();
+                PhoOutput.Text = Phonetics.PhoneticEnator();
             }
         }
 
@@ -77,8 +73,7 @@ namespace SashaPassGen
 
                 GS.GeneratePassword();
                 textBox1.Text = GenerateStuff.FinalOutput;
-                Phonetics pho = new Phonetics();
-                PhoOutput.Text = pho.PhoneticEnator();
+                PhoOutput.Text = Phonetics.PhoneticEnator();
                 Console.WriteLine(GenerateStuff.FinalOutput);
             }
         }

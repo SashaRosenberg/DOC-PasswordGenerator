@@ -75,7 +75,7 @@ namespace SashaPassGen
         {
             //Thread.Sleep(insts * 2000);
             insts++;
-            checkRandomThings(); //assigns random numbers and ensures they are legal
+            generateRandomWords(); //assigns random numbers and ensures they are legal
             switch (RNG)// checks how the word should end up look
             {
                 case int n when (RNG <= 33):
@@ -85,7 +85,7 @@ namespace SashaPassGen
                     FinalOutput = genColorList() + genNounList() + GenNumber();
                     break;
                 case int n when (RNG <= 99 && RNG >= 67):
-                    FinalOutput = genVerbList() + genNounList() + GenNumber();
+                    FinalOutput = genNounList() + GenNumber();
                     break;
             }
             if (wordsAmount == 3) //checks if system wants three words or two
@@ -110,21 +110,19 @@ namespace SashaPassGen
             }
 
 
-            Phonetics alph = new Phonetics(); //creates an instance of the dictionary
+            //Phonetics alph = new Phonetics(); //creates an instance of the dictionary
             Phonetics.PhoneticEnatorPos = 0; //resets the current position of the phonetic reader (second text box)
-            alph.PhoneticEnator(); //runs function to convert the password into phonetic alphabet
+            Phonetics.PhoneticEnator(); //runs function to convert the password into phonetic alphabet
         }
 
 
-        void checkRandomThings()
+        void generateRandomWords()
         {
             if (linesAD == null) //checks to ensure program is not reinstanciating lists every generate, but will run on boot (if arrays are empty)
             {
                 linesAD = Properties.Resources.adjectives.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
                 linesNoun = Properties.Resources.animals.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
                 linesColor = Properties.Resources.colors.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-                linesVerb = Properties.Resources.verbs.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-
             }
 
             ////
@@ -154,12 +152,12 @@ namespace SashaPassGen
                 Validate(linesColor, Colors);
 
             }
-            for (; Verbs == VerbPrev;)
-            {
-                Verbs = RandomNumber.Next(linesVerb.Length);
-                Validate(linesVerb, Verbs);
+            ////for (; Verbs == VerbPrev;)
+            ////{
+            ////    Verbs = RandomNumber.Next(linesVerb.Length);
+            ////    Validate(linesVerb, Verbs);
 
-            }
+            ////}
 
             RNG = RandomNumber.Next(0, 100); //generates the number that will check against rngRange
             wordsAmount = RandomNumber.Next(2, 4);
@@ -180,63 +178,21 @@ namespace SashaPassGen
         ////
         ///these strings all do the same thing
         ////
-        void Validate(string[] list, int testee)
+        void Validate(string[] list, int entry)
         {
-            if (list[testee] == "")
+            if (list[entry] == "")
             {
-                checkRandomThings();
+                generateRandomWords();
             }
 
         }
-        public static bool DidFail = false;
-        char[] test;
-        public string SpecialChar(string conv)
-        {
-            Dictionary<char, char> SpcialDic = new Dictionary<char, char>()
-        {
-            { 'a', '@'},
-            { 'h', '#'},
-            { 'i', '!'},
-            { 's', '$'},
-    };
-            test = conv.ToCharArray();
-            int CurSpecial = 0;
-            int SpecialLimit = 1;
-            for (int counter = 0; counter < conv.Length; counter++)
-            {
-                if (Char.IsUpper(test[counter]))
-                {
-                    CurSpecial = 0;
-                    test[counter] = test[counter];
-                }
-                else if (CurSpecial == SpecialLimit)
-                {
-                    test[counter] = test[counter];
-                }
-                else
-                {
-                    try
-                    {
-                        test[counter] = SpcialDic[test[counter]];
-                        CurSpecial = CurSpecial + 1;
-                    }
-                    catch (System.Collections.Generic.KeyNotFoundException)
-                    {
-                        test[counter] = test[counter];
-                    }
-
-                    // PhoneticDict[GenerateStuff.FinalOutput[PhoneticEnatorPos]]
-                }
-            }
-            conv = new string(test);
-            return conv;
-        }
+        public static bool didFinalOutputFail = false;
 
         void Validate()
         {
-            //failed
+            //failed on length check
             Console.WriteLine("Failed :(   || " + FinalOutput + " + " + FinalOutput.Length);
-            DidFail = true;
+            didFinalOutputFail = true;
             //checkRandomThings(false);
         }
 
@@ -263,16 +219,6 @@ namespace SashaPassGen
 
             return Result;
         }
-        string genVerbList()
-        {
-            string Result = "Blank";
-
-            Result = linesVerb[Verbs];
-            Result = char.ToUpper(Result[0]) + Result.Substring(1).ToLower();
-
-            return Result;
-        }
-
         string genNounList()
         {
             string Result = "Blank";
@@ -285,12 +231,12 @@ namespace SashaPassGen
         }
     }
 
-    public class Phonetics
+    static class Phonetics
     {
         /// <summary>
         /// this creates the dictionary that this class will use to convert the password into NATO phonetic alphabet
         /// </summary>
-        Dictionary<char, string> PhoneticDict = new Dictionary<char, string>()
+        static Dictionary<char, string> PhoneticDict = new Dictionary<char, string>
         {
             { 'a', "Alpha"},
             { 'b', "Bravo"},
@@ -349,9 +295,51 @@ namespace SashaPassGen
             { '!', "Exclamation mark"},
             { '$', "Dollar Sign"},
     };
+        static public char[] SpecialCharCheck;
+        static Dictionary<char, char> SpcialDic = new Dictionary<char, char>
+        {
+            { 'a', '@'},
+            { 'h', '#'},
+            { 'i', '!'},
+            { 's', '$'},
+        };
+        static public string generateSpecialChar(string conv)
+        {
+            SpecialCharCheck= conv.ToCharArray();
+            int CurSpecial = 0;
+            int SpecialLimit = 1;
+            for (int counter = 0; counter < conv.Length; counter++)
+            {
+                if (Char.IsUpper(SpecialCharCheck[counter]))
+                {
+                    CurSpecial = 0;
+                    SpecialCharCheck[counter] = SpecialCharCheck[counter];
+                }
+                else if (CurSpecial == SpecialLimit)
+                {
+                    SpecialCharCheck[counter] = SpecialCharCheck[counter];
+                }
+                else
+                {
+                    try
+                    {
+                        SpecialCharCheck[counter] = SpcialDic[SpecialCharCheck[counter]];
+                        CurSpecial = CurSpecial + 1;
+                    }
+                    catch (System.Collections.Generic.KeyNotFoundException)
+                    {
+                        SpecialCharCheck[counter] = SpecialCharCheck[counter];
+                    }
+
+                }
+            }
+            conv = new string(SpecialCharCheck);
+            return conv;
+        }
+
         //#13
         public static short PhoneticEnatorPos = 0; //stores the current position of phonetic letter being shown 
-        private void numCheck()
+        static void numCheck()
         {
             if (PhoneticEnatorPos < 0) //makes sure this var stays positive
                 PhoneticEnatorPos = 0;
@@ -361,7 +349,7 @@ namespace SashaPassGen
 
         }
 
-        public string PhoneticEnator()
+        public static string PhoneticEnator()
         {
             numCheck();//checks that PhoneticEnatorPos is in a legal position
             Console.WriteLine("runnings");

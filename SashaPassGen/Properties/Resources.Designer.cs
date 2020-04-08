@@ -67,6 +67,7 @@ namespace SashaPassGen.Properties {
         ///Huge
         ///Wide
         ///Thin
+        ///Thick
         ///Cute
         ///Smiley
         ///pretty
@@ -83,11 +84,12 @@ namespace SashaPassGen.Properties {
         ///Intelligent
         ///Handsome
         ///Happy
+        ///Elongated
         ///Cool
         ///Funny
         ///Colourful
         ///Silly
-        ///glowing
+        ///Jealous
         ///.
         /// </summary>
         internal static string adjectives {
@@ -113,13 +115,10 @@ namespace SashaPassGen.Properties {
         ///Whale
         ///crow
         ///Aardvark
-        ///Falcon
-        ///Finch
-        ///Mouse
+        ///rat
         ///Horse
         ///Lion
-        ///Sparrow
-        ///Boar
+        ///pig
         ///tiger
         ///apple
         ///orange
@@ -145,25 +144,14 @@ namespace SashaPassGen.Properties {
         ///Wombat
         ///Koala
         ///Catfish
-        ///Parrot
+        ///Peacock
         ///hyena
         ///crab
         ///lemur
         ///ButterFly
         ///goose
         ///Cow
-        ///Zebra
-        ///Goat
-        ///Koala
-        ///Otter
-        ///Possums
-        ///Python
-        ///Lizard
-        ///turtle
-        ///Sponge
-        ///Starfish
-        ///squirrel
-        ///plankton.
+        ///.
         /// </summary>
         internal static string animals {
             get {
@@ -185,7 +173,6 @@ namespace SashaPassGen.Properties {
         ///Pink
         ///Black
         ///White
-        ///Scarlet
         ///.
         /// </summary>
         internal static string colors {
@@ -211,24 +198,6 @@ namespace SashaPassGen.Properties {
             get {
                 object obj = ResourceManager.GetObject("Hat", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dancing
-        ///Jumping
-        ///Hopping
-        ///Lying
-        ///Singing
-        ///Running
-        ///Sleeping
-        ///Laughing
-        ///Writing
-        ///Walking.
-        /// </summary>
-        internal static string verbs {
-            get {
-                return ResourceManager.GetString("verbs", resourceCulture);
             }
         }
     }

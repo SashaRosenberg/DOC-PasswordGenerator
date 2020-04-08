@@ -111,28 +111,17 @@
     <None Include="Properties\communities-logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\adjectives.txt" />
+    <None Include="Properties\Hat.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\animals.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\adjectives.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\animals.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\nouns.txt" />
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\colors.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\verbs.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\Hat.png" />
+    <Content Include="Resources\adjectives.txt" />
+    <Content Include="Resources\animals.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
