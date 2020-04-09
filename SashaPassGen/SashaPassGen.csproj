@@ -123,5 +123,15 @@
     <Content Include="Resources\adjectives.txt" />
     <Content Include="Resources\animals.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{9365AF07-EB49-42F0-9BF1-4B2F2EA4CC19}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{6df4e3f4-fe93-4874-a906-3fe1492f2072}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
