@@ -1,14 +1,54 @@
 ﻿using System;
 using System.Windows.Forms;
+using Core;
 
 namespace SashaPassGen
 {
     public partial class GUI : Form
     {
+        private string _passcode = string.Empty;
+        private int _position = 0;
+
+
         public GUI()
         {
             InitializeComponent();
         }
+
+
+        public static string FormatPhoOutput(char character)
+        {
+            Console.WriteLine("runnings");
+
+            ////
+            ///this checks what type of output should be used for the current letter
+            ///and then adds the correct flavor text to it
+            ///
+            ///currently only lowercase, uppercase, number
+            ///to add: special characters, white spacces
+            ////
+
+            var phonetic = Phonetics.Convert(character);
+             
+
+            if (char.IsLower(character)) //checks if the current letter is lowcase or uppercase
+            {
+                return "Lowercase " + character + " for " + phonetic;
+            }
+            if (char.IsUpper(character))
+            {
+                return "Uppercase " + character + " for " + phonetic;
+            }
+            if (
+                character == '@'
+                || character == '$'
+                || character == '!'
+                || character == '#'
+            ) { return "The " + phonetic + " symbol"; }
+              
+            return "The number " + character;
+        }
+
 
         private void Generate_Click_1(object sender, EventArgs e)
         {
@@ -16,17 +56,17 @@ namespace SashaPassGen
             if (checkBox1.Checked) //do you want to use special characters
             {
                 GS.GeneratePassword();
-                GenerateStuff.FinalOutput = Phonetics.generateSpecialChar(GenerateStuff.FinalOutput);
+                generatedPasscode = Phonetics.generateSpecialChar(_passcode);
                 textBox1.Text = GenerateStuff.FinalOutput;
 
-                PhoOutput.Text = Phonetics.PhoneticEnator();
+                PhoOutput.Text = Phonetics.Enator();
             }
             else
             {
 
                 GS.GeneratePassword();
                 textBox1.Text = GenerateStuff.FinalOutput;
-                PhoOutput.Text = Phonetics.PhoneticEnator();
+                PhoOutput.Text = Phonetics.Enator(_passcode);
 
             }
         }
@@ -45,8 +85,8 @@ namespace SashaPassGen
             }
             else
             {
-                Phonetics.PhoneticEnatorPos++;
-                PhoOutput.Text = Phonetics.PhoneticEnator();
+                _position++;
+                PhoOutput.Text = Phonetics.Enator(_passcode[_position]);
             }
         }
 
@@ -59,23 +99,8 @@ namespace SashaPassGen
             else
             {
                 Phonetics.PhoneticEnatorPos--;
-                PhoOutput.Text = Phonetics.PhoneticEnator();
+                PhoOutput.Text = Phonetics.Enator();
             }
-        }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            GenerateStuff GS = new GenerateStuff();
-
-            for (int i = 0; i <= 1000000; i++)
-            {
-                Console.WriteLine("----------------");
-
-                GS.GeneratePassword();
-                textBox1.Text = GenerateStuff.FinalOutput;
-                PhoOutput.Text = Phonetics.PhoneticEnator();
-                Console.WriteLine(GenerateStuff.FinalOutput);
-            }
-        }
+        } 
     }
 }

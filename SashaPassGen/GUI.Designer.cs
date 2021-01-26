@@ -41,18 +41,20 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(12, 78);
+            this.textBox1.Location = new System.Drawing.Point(16, 96);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 20);
+            this.textBox1.Size = new System.Drawing.Size(249, 22);
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = "FastAaron12";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Copy
             // 
-            this.Copy.Location = new System.Drawing.Point(206, 78);
+            this.Copy.Location = new System.Drawing.Point(275, 96);
+            this.Copy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Copy.Name = "Copy";
-            this.Copy.Size = new System.Drawing.Size(57, 25);
+            this.Copy.Size = new System.Drawing.Size(76, 31);
             this.Copy.TabIndex = 4;
             this.Copy.Text = "Copy";
             this.Copy.UseVisualStyleBackColor = true;
@@ -60,9 +62,10 @@
             // 
             // Generate
             // 
-            this.Generate.Location = new System.Drawing.Point(12, 103);
+            this.Generate.Location = new System.Drawing.Point(16, 127);
+            this.Generate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Generate.Name = "Generate";
-            this.Generate.Size = new System.Drawing.Size(166, 25);
+            this.Generate.Size = new System.Drawing.Size(221, 31);
             this.Generate.TabIndex = 3;
             this.Generate.Text = "Generate";
             this.Generate.UseVisualStyleBackColor = true;
@@ -73,17 +76,19 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Image = global::SashaPassGen.Properties.Resources.communities_logo;
             this.pictureBox1.Location = new System.Drawing.Point(-1, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(337, 70);
+            this.pictureBox1.Size = new System.Drawing.Size(449, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(267, 134);
+            this.button1.Location = new System.Drawing.Point(356, 165);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(58, 22);
+            this.button1.Size = new System.Drawing.Size(77, 27);
             this.button1.TabIndex = 8;
             this.button1.Text = "Next";
             this.button1.UseVisualStyleBackColor = true;
@@ -91,19 +96,22 @@
             // 
             // PhoOutput
             // 
-            this.PhoOutput.Location = new System.Drawing.Point(73, 136);
+            this.PhoOutput.Location = new System.Drawing.Point(97, 167);
+            this.PhoOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PhoOutput.Multiline = true;
             this.PhoOutput.Name = "PhoOutput";
-            this.PhoOutput.Size = new System.Drawing.Size(188, 20);
+            this.PhoOutput.Size = new System.Drawing.Size(249, 24);
             this.PhoOutput.TabIndex = 9;
             this.PhoOutput.Text = "Uppercase F for Foxtrot";
             this.PhoOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PhoOutput.TextChanged += new System.EventHandler(this.PhoOutput_TextChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(10, 134);
+            this.button2.Location = new System.Drawing.Point(13, 165);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 22);
+            this.button2.Size = new System.Drawing.Size(76, 27);
             this.button2.TabIndex = 10;
             this.button2.Text = "Previous";
             this.button2.UseVisualStyleBackColor = true;
@@ -112,10 +120,11 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(184, 108);
+            this.checkBox1.Location = new System.Drawing.Point(245, 133);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.checkBox1.Size = new System.Drawing.Size(137, 17);
+            this.checkBox1.Size = new System.Drawing.Size(178, 21);
             this.checkBox1.TabIndex = 12;
             this.checkBox1.Text = "Add Special Characters";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -123,13 +132,13 @@
             // 
             // GUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(323, 169);
+            this.ClientSize = new System.Drawing.Size(677, 368);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.PhoOutput);
@@ -140,6 +149,7 @@
             this.Controls.Add(this.Generate);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "GUI";
             this.ShowIcon = false;
